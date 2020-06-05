@@ -1,4 +1,3 @@
-"""
 from selenium import webdriver
 import chromedriver_autoinstaller
 
@@ -9,7 +8,3 @@ driver.get("https://www.google.com")
 
 print(driver.page_source)
 
-"""
-i=0
-for i in range(1,10): 
-    print('hello heroku')
