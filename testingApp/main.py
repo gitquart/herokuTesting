@@ -10,7 +10,8 @@ chrome_options.add_argument("--no-sandbox")
 driver=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=chrome_options)
 
 print('Test to know if selenium is working properly...')
-driver.get("http://www.tfjfa.gob.mx/servicios/consulta_sentencia/")
+url='https://sjf.scjn.gob.mx/SJFSist/Paginas/DetalleGeneralV2.aspx?ID=159819&Clase=DetalleTesisBL&Semanario=0'
+driver.get(url)
 
-print(driver.title)
+print(driver.page_source)
 
