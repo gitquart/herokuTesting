@@ -11,6 +11,7 @@ pathToHere=os.getcwd()
 def main():
     #Read the only one record in database in store in txt file
     print('Starting 1 million records... ')
+    print('This is the path until here:',pathToHere)
     cassandraBDProcess()
 
 
@@ -19,7 +20,7 @@ def cassandraBDProcess():
         #Connect to Cassandra
         objCC=CassandraConnection()
         cloud_config= {
-            'secure_connect_bundle': pathToHere+'\\secure-connect-dbtest.zip'
+            'secure_connect_bundle': pathToHere+'/secure-connect-dbtest.zip'
         }
     
         auth_provider = PlainTextAuthProvider(objCC.cc_user_test,objCC.cc_pwd_test)
