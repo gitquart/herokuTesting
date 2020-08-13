@@ -10,7 +10,7 @@ import time
 pathToHere=os.getcwd()
 def main():
     #Read the only one record in database in store in txt file
-     print('Starting 1 million records... ')
+    print('Starting 1 million records... ')
     cassandraBDProcess()
 
 
@@ -37,8 +37,6 @@ def cassandraBDProcess():
         insertSt="INSERT INTO test.tbthesis JSON '"+json_thesis+"';" 
         session.execute(insertSt)
         print("Records",str(i))
-
-
         cluster.shutdown()
                                 
 
