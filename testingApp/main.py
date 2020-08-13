@@ -1,24 +1,55 @@
-
-"""
-from selenium import webdriver
+import json
+import uuid
+from cassandra.cluster import Cluster
+from cassandra.auth import PlainTextAuthProvider
+from cassandra.query import SimpleStatement
 import os
 import time
 
-chrome_options= webdriver.ChromeOptions()
-chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
+#uuid.uuid4
+pathToHere=os.getcwd()
+def main():
+    #Read the only one record in database in store in txt file
+     print('Starting 1 million records... ')
+    cassandraBDProcess()
 
-driver=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=chrome_options)
 
-print('Test to know if selenium is working properly...')
-url='https://sjf.scjn.gob.mx/SJFSist/Paginas/DetalleGeneralV2.aspx?ID=159819&Clase=DetalleTesisBL&Semanario=0'
-driver.get(url)
-time.sleep(1)
+def cassandraBDProcess():
+    for i in range(1,1000000):
+        #Connect to Cassandra
+        objCC=CassandraConnection()
+        cloud_config= {
+            'secure_connect_bundle': pathToHere+'\\secure-connect-dbtest.zip'
+        }
+    
+        auth_provider = PlainTextAuthProvider(objCC.cc_user_test,objCC.cc_pwd_test)
 
-print(driver.page_source)
-"""
+        cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
+        
+        session = cluster.connect()
+        session.default_timeout=70
+  
+        with open('demo.json',encoding='utf-8') as f:
+            json_thesis = json.load(f)
 
-print('Testing working well..')
+        json_thesis['guid_thesis']=str(uuid.uuid4())
+        json_thesis=json.dumps(json_thesis)
+        insertSt="INSERT INTO test.tbthesis JSON '"+json_thesis+"';" 
+        session.execute(insertSt)
+        print("Records",str(i))
+
+
+        cluster.shutdown()
+                                
+
+
+class CassandraConnection():
+    cc_user_test='test'
+    cc_pwd_test='testquart'
+   
+
+
+if __name__=='__main__':
+    main()
+
 
