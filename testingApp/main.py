@@ -30,7 +30,7 @@ def cassandraBDProcess():
         session = cluster.connect()
         session.default_timeout=70
   
-        with open('demo.json',encoding='utf-8') as f:
+        with open(pathToHere+'/testingApp/demo.json',encoding='utf-8') as f:
             json_thesis = json.load(f)
 
         json_thesis['guid_thesis']=str(uuid.uuid4())
