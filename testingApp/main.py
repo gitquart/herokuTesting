@@ -20,7 +20,7 @@ def cassandraBDProcess():
         #Connect to Cassandra
         objCC=CassandraConnection()
         cloud_config= {
-            'secure_connect_bundle': pathToHere+'/secure-connect-dbtest.zip'
+            'secure_connect_bundle': pathToHere+'/testingApp/secure-connect-dbtest.zip'
         }
     
         auth_provider = PlainTextAuthProvider(objCC.cc_user_test,objCC.cc_pwd_test)
