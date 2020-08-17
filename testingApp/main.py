@@ -14,6 +14,7 @@ def main():
     print('Starting 1 million records... ')
     print('This is the path until here:',pathToHere)
     cassandraBDProcess()
+    print("Million DONE!!!!")
 
 
 def cassandraBDProcess():
