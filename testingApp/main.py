@@ -18,7 +18,7 @@ def main():
 
 
 def cassandraBDProcess():
-    for i in range(1,775610):
+    for i in range(1,661):
         #Connect to Cassandra
         objCC=CassandraConnection()
         cloud_config= {
@@ -35,7 +35,7 @@ def cassandraBDProcess():
         #Start of the batch
         batchCounter=0
         batch = BatchStatement()
-        while batchCounter<100: 
+        while batchCounter<=1000: 
             with open(pathToHere+'/testingApp/demo.json',encoding='utf-8') as f:
                 json_thesis = json.load(f)   
             json_thesis['guid_thesis']=str(uuid.uuid4())
