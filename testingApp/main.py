@@ -43,7 +43,6 @@ def cassandraBDProcess():
             insertSt="INSERT INTO test.tbthesis JSON '"+json_thesis+"';" 
             batch.add(SimpleStatement(insertSt))
             batchCounter=batchCounter+1
-            print("Record",str(batchCounter))
 
         session.execute(batch)
         print("Batch completed:",str(i))  
