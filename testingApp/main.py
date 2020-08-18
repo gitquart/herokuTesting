@@ -18,7 +18,7 @@ def main():
 
 
 def cassandraBDProcess():
-    for i in range(1,5052):
+    for i in range(1,1002):
         #Connect to Cassandra
         objCC=CassandraConnection()
         cloud_config= {
