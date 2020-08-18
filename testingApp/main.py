@@ -18,7 +18,7 @@ def main():
 
 
 def cassandraBDProcess():
-    for i in range(1,1002):
+    for i in range(1,9995):
         #Connect to Cassandra
         objCC=CassandraConnection()
         cloud_config= {
@@ -46,7 +46,7 @@ def cassandraBDProcess():
 
         session.execute(batch)
         print("Batch completed:",str(i))  
-        time.sleep(10)  
+        time.sleep(6)  
 
         cluster.shutdown()
                                 
