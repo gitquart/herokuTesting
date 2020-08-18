@@ -46,7 +46,8 @@ def cassandraBDProcess():
             print("Record",str(batchCounter))
 
         session.execute(batch)
-        print("Batch completed:",str(i))    
+        print("Batch completed:",str(i))  
+        time.sleep(10)  
 
         cluster.shutdown()
                                 
